@@ -2,6 +2,8 @@
 #include <math.h>
 
 int main() {
+  const int t = 2;
+  const int f = 4;
   double a, b, c, d, x1, x2;
   std::cout << "Enter a (integer that does not equal to 0):\n";
   std::cin >> a;
@@ -23,16 +25,16 @@ int main() {
                  "from -100 to -1:\n";
     std::cin >> c;
   }
-  d = b * b - (4 * a * c);
+  d = b * b - (f * a * c);
   if (d < 0) {
     std::cout
         << "The discriminant is negative. No real square roots can be taken!\n";
   } else if (d == 0) {
-    std::cout << "The square root is " << -(b / (2 * a)) << "\n";
+    std::cout << "The square root is " << -(b / (t * a)) << "\n";
   } else {
     std::cout << "The square roots are: \n";
-    x1 = (-b + sqrt(d)) / (2 * a);
-    x2 = (-b - sqrt(d)) / (2 * a);
+    x1 = (-b + sqrt(d)) / (t * a);
+    x2 = (-b - sqrt(d)) / (t * a);
     std::cout << "x1 = " << x1 << "\n";
     std::cout << "x2 = " << x2 << "\n";
   }
