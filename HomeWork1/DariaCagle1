@@ -1,0 +1,39 @@
+#include <iostream>
+#include <math.h>
+
+int main() {
+  double a, b, c, d, x1, x2;
+  std::cout << "Enter a (integer that does not equal to 0):\n";
+  std::cin >> a;
+  while (a == 0) {
+    std::cout << "You entered 0! Enter any other integral number:\n";
+    std::cin >> a;
+  }
+  std::cout << "Enter b (in range from 1 to 100):\n";
+  std::cin >> b;
+  while ((b < 1) || (b > 100)) {
+    std::cout << "You entered a number outside the given range! Enter a number "
+                 "from 1 to 100:\n";
+    std::cin >> b;
+  }
+  std::cout << "Enter c (in range from -100 to -1):\n";
+  std::cin >> c;
+  while ((c < -100) || (c > -1)) {
+    std::cout << "You entered a number outside the given range! Enter a number "
+                 "from -100 to -1:\n";
+    std::cin >> c;
+  }
+  d = b * b - (4 * a * c);
+  if (d < 0) {
+    std::cout
+        << "The discriminant is negative. No real square roots can be taken!\n";
+  } else if (d == 0) {
+    std::cout << "The square root is " << -(b / (2 * a)) << "\n";
+  } else {
+    std::cout << "The square roots are: \n";
+    x1 = (-b + sqrt(d)) / (2 * a);
+    x2 = (-b - sqrt(d)) / (2 * a);
+    std::cout << "x1 = " << x1 << "\n";
+    std::cout << "x2 = " << x2 << "\n";
+  }
+}
