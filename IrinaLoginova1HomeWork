@@ -4,7 +4,7 @@
 int main() {
   int a, b, c, d;
   long double x, x1, x2;
-  int const1{2}, const2{4};
+  const int Two{2}, Four{4};
   {
     std::cout << "Please enter a value for variables A, B, C in the range from "
                  "2 to 255\n";
@@ -38,18 +38,20 @@ int main() {
       std::cout << "The value for C = ";
       std::cin >> c;
     }
-    d = (b * b) - (const2 * a * c);
+    std::cout << "Your equation is " << a << "x^2+" << b << "x+" << c << "=0."
+              << std::endl;
+    d = (b * b) - (Four * a * c);
     if (d < 0)
       std::cout << "Equation has no solution \n";
     if (d > 0) {
       b = -b;
-      x1 = (b + sqrt(d)) / (const1 * a);
-      x2 = (b - sqrt(d)) / (const1 * a);
+      x1 = (b + sqrt(d)) / (Two * a);
+      x2 = (b - sqrt(d)) / (Two * a);
       std::cout << "First root of the equation x1= " << x1 << std::endl;
       std::cout << "Second root of the equation x2= " << x2 << std::endl;
     }
     if (d == 0) {
-      x = -(b / (const1 * a));
+      x = -(b / (Two * a));
       std::cout << "The root of the equation x= " << x << std::endl;
     }
   }
