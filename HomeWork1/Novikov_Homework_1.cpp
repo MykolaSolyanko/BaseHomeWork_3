@@ -5,8 +5,8 @@
 int main() {
 
 	//consts
-	const int FOUR = 4;
-	const int TWO = 2;
+	constexpr int FOUR = 4;
+	constexpr int TWO = 2;
 
 
 	int a{};
@@ -32,10 +32,12 @@ int main() {
 
 
 	//roots of equation
-	float x1;
-	float x2;
+	float x1{ 0 };
+	float x2{ 0 };
 	float fc = static_cast<float>(-c);
 	float fb = static_cast<float>(-b);
+	constexpr float kFC = fc / a;
+	constexpr float kTwoA = TWO * a;
 	// ax^2 = 0
 	if (b == 0 && c == 0) {
 		x1 = x2 = 0;
@@ -52,9 +54,9 @@ int main() {
 
 	// ax^2+c=0
 	if (b == 0 && a != 0 && c != 0) {
-		if (fc / a > 0) {
-			x1 = sqrt(fc / a);
-			x2 = -sqrt(fc / a);
+		if (kFC > 0) {
+			x1 = sqrt(kFC);
+			x2 = -sqrt(kFC);
 			std::cout << "x1 = " << x1 << std::endl;
 			std::cout << "x2 = " << x2 << std::endl;
 			return 0;
@@ -89,14 +91,14 @@ int main() {
 			}
 			if (D == 0)
 			{
-				x1 = x2 = fb / (TWO * a);
+				x1 = x2 = fb / (kTwoA);
 				std::cout << "x1 = " << x1 << std::endl;
 				std::cout << "x2 = " << x2 << std::endl;
 				return 0;
 			}
 			else {
-				x1 = (-b + sqrt(D)) / (TWO * a);
-				x2 = (-b - sqrt(D)) / (TWO * a);
+				x1 = (-b + sqrt(D)) / (kTwoA);
+				x2 = (-b - sqrt(D)) / (kTwoA);
 				std::cout << "x1 = " << x1 << std::endl;
 				std::cout << "x2 = " << x2 << std::endl;
 				return 0;
