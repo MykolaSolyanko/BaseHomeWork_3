@@ -84,19 +84,18 @@ int main() {
     long double D = b * b - FOUR * a * c;
     if (D < 0) {
       std::cout << "There's no real solutions" << std::endl;
-      return 0;
     }
-    if (D == 0) {
+    else if (D == 0) {
       x1 = x2 = fb / (kTwoA);
       std::cout << "x1 = " << x1 << std::endl;
       std::cout << "x2 = " << x2 << std::endl;
-      return 0;
     } else {
       x1 = (-b + sqrt(D)) / (kTwoA);
       x2 = (-b - sqrt(D)) / (kTwoA);
       std::cout << "x1 = " << x1 << std::endl;
       std::cout << "x2 = " << x2 << std::endl;
-      return 0;
+      
     }
   }
+  return 0;
 }
