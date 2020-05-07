@@ -35,12 +35,12 @@ int main() {
         << -kHundred << " to " << -kOne << ":\n";
     std::cin >> c;
   }
-  double d = b * b - (kFour * a * c);
+  __int64 d = b * b - (kFour * a * c);
   int doubleA = kTwo * a;
-  if (d < std::numeric_limits<double>::epsilon()) {
+  if (d < kZero) {
     std::cout
         << "The discriminant is negative. No real square roots can be taken!\n";
-  } else if (d == std::numeric_limits<double>::epsilon()) {
+  } else if (d == kZero) {
     std::cout << "The square root is " << -(b / doubleA) << "\n";
   } else {
     std::cout << "The square roots are: \n";
