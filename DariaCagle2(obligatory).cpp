@@ -21,10 +21,9 @@ void sumAndMean() {
   int number;
   int i = kZero;
   int sum = kZero;
-  int digit;
   std::cin >> number;
   while (number != kZero) {
-    digit = number % kTen;
+    int digit = number % kTen;
     sum += digit;
     number = (number - (number % kTen)) / kTen;
     ++i;
@@ -40,15 +39,14 @@ void luckyTicket() {
   int number1 = (number - (number % kThousand)) / kThousand;
   int number2 = number % kThousand;
   int sum1 = kZero;
-  int digit;
   while (number1 != kZero) {
-    digit = number1 % kTen;
+    int digit = number1 % kTen;
     sum1 += digit;
     number1 = (number1 - (number1 % kTen)) / kTen;
   }
   int sum2 = kZero;
   while (number2 != kZero) {
-    digit = number2 % kTen;
+    int digit = number2 % kTen;
     sum2 += digit;
     number2 = (number2 - (number2 % kTen)) / kTen;
   }
@@ -60,11 +58,11 @@ void luckyTicket() {
 }
 
 void reverseNumbers() {
-  __int64 number;
+  int64_t number;
   std::cout << "Enter any 32x signed number:\n";
   std::cin >> number;
   int digit;
-  __int64 reverseNumber = kZero;
+  int64_t reverseNumber = kZero;
   if (number == abs(number)) {
     while (number != kZero) {
       digit = number % kTen;
@@ -84,6 +82,8 @@ void reverseNumbers() {
 }
 
 void sumOfOdd() {
+  constexpr int kOne = 1;
+  constexpr int kFifty = 50;
   int numberOfElements;
   do {
     std::cout << "Enter number of elements from " << kOne << " to " << kFifty
@@ -112,10 +112,9 @@ void sumOfOdd() {
 }
 
 int sum(int number) {
-  int digit;
   int sum = kZero;
   while (number != kZero) {
-    digit = number % kTen;
+    int digit = number % kTen;
     sum += digit;
     number = (number - (number % kTen)) / kTen;
   }
@@ -129,8 +128,9 @@ void bestDivisor() {
   int bestDivisor = kZero;
   for (int divisor = kOne; divisor <= number; divisor++) {
     if ((number % divisor) == kZero) {
-      if ((sum(divisor) - bestDivisor) > kZero) {
-        bestDivisor = sum(divisor);
+      auto sum_digit_devisor = sum(divisor);
+      if (sum_digit_devisor > bestDivisor) {
+      bestDivisor = sum_digit_devisor;
       }
     }
   }
@@ -167,7 +167,7 @@ int main() {
       bestDivisor();
       break;
     default:
-      exit(1);
+      return 0;
     }
   }
 }
