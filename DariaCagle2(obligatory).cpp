@@ -81,7 +81,7 @@ void reverseNumbers() {
   }
 }
 
-void sumOfOdd() {
+/*void sumOfOdd() {
   constexpr int kOne = 1;
   constexpr int kFifty = 50;
   int numberOfElements;
@@ -106,6 +106,30 @@ void sumOfOdd() {
   for (int count = kZero; count < numberOfElements; ++count) {
     if (elements[count] % kTwo == kOne) {
       sum = sum + elements[count];
+    }
+  }
+  std::cout << sum << "\n";
+}*/
+
+void sumOfOdd() {
+  int numberOfElements;
+  do {
+    std::cout << "Enter number of elements from " << kOne << " to " << kFifty
+              << ":\n";
+    std::cin >> numberOfElements;
+  } while ((numberOfElements < kOne) || (numberOfElements > kFifty));
+  std::cout << "Enter " << numberOfElements << " elements from " << -kSixty
+            << " to " << kNinety << ":\n";
+  int sum = 0;
+  for (size_t i = kOne; i <= numberOfElements; i++) {
+    int element;
+    std::cin >> element;
+    while ((element < -kSixty) || (element > kNinety)) {
+      std::cout << "Wrong range! Enter again:\n";
+      std::cin >> element;
+    }
+    if (element % kTwo == kOne) {
+      sum += element;
     }
   }
   std::cout << sum << "\n";
