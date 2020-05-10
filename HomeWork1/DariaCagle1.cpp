@@ -7,7 +7,7 @@ int main() {
   constexpr int kTwo = 2;
   constexpr int kFour = 4;
   constexpr int kHundred = 100;
-  __int64 a;
+  int64_t a;
   std::cout << "Enter a (integer that does not equal to " << kZero << "):\n";
   std::cin >> a;
   while (a == kZero) {
@@ -15,7 +15,7 @@ int main() {
               << "! Enter any other integral number:\n";
     std::cin >> a;
   }
-  __int64 b;
+  int64_t b;
   std::cout << "Enter b (in range from " << kOne << " to " << kHundred
             << "):\n";
   std::cin >> b;
@@ -25,7 +25,7 @@ int main() {
         << kOne << " to " << kHundred << ":\n";
     std::cin >> b;
   }
-  __int64 c;
+  int64_t c;
   std::cout << "Enter c (in range from " << -kHundred << " to " << -kOne
             << "):\n";
   std::cin >> c;
@@ -35,17 +35,17 @@ int main() {
         << -kHundred << " to " << -kOne << ":\n";
     std::cin >> c;
   }
-  __int64 d = b * b - (kFour * a * c);
+  int64_t d = b * b - (kFour * a * c);
   int doubleA = kTwo * a;
   if (d < kZero) {
     std::cout
         << "The discriminant is negative. No real square roots can be taken!\n";
   } else if (d == kZero) {
-    std::cout << "The square root is " << -(b / doubleA) << "\n";
+    std::cout << "The square root is " << -(static_cast<double>(b) / doubleA) << "\n";
   } else {
     std::cout << "The square roots are: \n";
-    double x1 = (-b + sqrt(d)) / doubleA;
-    double x2 = (-b - sqrt(d)) / doubleA;
+    double x1 = (-(static_cast<double>(b)) + sqrt(d)) / doubleA;
+    double x2 = (-(static_cast<double>(b)) - sqrt(d)) / doubleA;
     std::cout << "x1 = " << x1 << "\n";
     std::cout << "x2 = " << x2 << "\n";
   }
