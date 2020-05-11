@@ -36,10 +36,10 @@ void Task_1_average_numbers() {
   std::cout << "Average is " << average << std::endl;
 }
 void Task_2_lucky_ticket() {
-  bool check{true};
+
   int number;
   int digitsNumber{0};
-  while (check) {
+  while (true) {
     std::cout << "Enter 6-digit number" << std::endl;
     std::cin >> number;
     if (number == 0) {
@@ -47,17 +47,17 @@ void Task_2_lucky_ticket() {
       continue;
     }
     digitsNumber = static_cast<int>(log10(number)) + 1;
-    constexpr int kSix = 6;
-    if (digitsNumber != kSix) {
+    constexpr int kDigitsNumberCount = 6;
+    if (digitsNumber != kDigitsNumberCount) {
       std::cout << "Number is not 6-digit! Please try again!\n";
       continue;
     } else
-      check = false;
+      break;
   }
 
   int left{0};
   int right{0};
-  const int divider = digitsNumber / 2.0;
+  const int divider = digitsNumber / 2;
   while (number) {
     if (digitsNumber > divider) {
       right += number % 10;
@@ -76,12 +76,20 @@ void Task_2_lucky_ticket() {
 void Task_3_number_reverce() {
   int32_t number{0};
   int32_t reverse_number{0};
-  constexpr int kTen{10};
-  std::cout << "Enter number: ";
-  std::cin >> number;
+  constexpr int kTenConstantForMultiply{10};
+  while (true) {
+    std::cout << "Enter number: ";
+    std::cin >> number;
+    long long checker = number;
+    if (checker > std::numeric_limits<int>::max() ||
+        checker < std::numeric_limits<int>::min())
+      std::cout << "There is an int overflow try again\n";
+    else
+      break;
+  }
 
   while (number) {
-    reverse_number = kTen * reverse_number + number % 10;
+    reverse_number = kTenConstantForMultiply * reverse_number + number % 10;
     number /= 10;
   }
 
@@ -89,42 +97,37 @@ void Task_3_number_reverce() {
 }
 
 void Task_4_odd_numbers() {
-  constexpr int kRangeArraySizeLow{1};
-  constexpr int kRangeArraySizeHigh{50};
-  constexpr int kRangeArrayElementLow{-60};
-  constexpr int kRangeArrayElementHigh{90};
+  constexpr int kRangeSizeLow{1};
+  constexpr int kRangeSizeHigh{50};
+  constexpr int kRangeElementLow{-60};
+  constexpr int kRangeElementHigh{90};
 
   int elementsNumber{0};
-  int elements[50]{0};
+  int element;
   bool check{true};
 
   while (check) {
     std::cout << "Enter number of elements [1..50]: ";
     std::cin >> elementsNumber;
-    if (elementsNumber < kRangeArraySizeLow ||
-        elementsNumber > kRangeArraySizeHigh) {
+    if (elementsNumber < kRangeSizeLow || elementsNumber > kRangeSizeHigh) {
       std::cout << "Number is not in range! Please try again\n";
       continue;
     }
     check = false;
   }
 
+  int oddSum{0};
   std::cout << "Enter elements in range [-60..90]\n";
   for (int i = 0; i < elementsNumber;) {
-    std::cin >> elements[i];
-    if (elements[i] <= kRangeArrayElementLow ||
-        elements[i] >= kRangeArraySizeHigh) {
+    std::cin >> element;
+    if (element <= kRangeElementLow || element >= kRangeSizeHigh) {
       std::cout << "Element is not in range! Please try again\n";
       continue;
+    } else if (element & 1) {
+      oddSum += element;
+      i++;
     }
-    i++;
   }
-
-  int oddSum{0};
-
-  for (int i = 0; i < elementsNumber; i++)
-    if (elements[i] & 1)
-      oddSum += elements[i];
 
   std::cout << "Sum of odd elements: " << oddSum << std::endl;
 }
@@ -212,8 +215,7 @@ void Task_8_bit_set() {
   std::cin >> checker;
   std::cout << std::endl;
 
-  constexpr int mask{1};
-  if (number & checker << mask)
+  if (number & checker << 1)
     std::cout << "Bit is set\n";
   else
     std::cout << "Bit is not set\n";
@@ -231,8 +233,7 @@ void Task_9_number_builder() {
   for (int i = 0; i < number_count; i++) {
     std::cout << "Enter number " << i << std::endl;
     std::cin >> number;
-
-    sum_of_digits = sum_counter(number);
+    sum_of_digits += sum_counter(number);
   }
 
   if (sum_of_digits % 3 == 0)
@@ -244,6 +245,18 @@ void Task_9_number_builder() {
 int main() {
 
   int loop_state{};
+  enum Tasks {
+    ExitProgram = 0,
+    TaskOne,
+    TaskTwo,
+    TaskThree,
+    TaskFour,
+    TaskFive,
+    TaskSix,
+    TaskSeven,
+    TaskEight,
+    TaskNine
+  };
 
   while (true) {
     std::cout << "Choose your task:\n";
@@ -259,34 +272,37 @@ int main() {
     std::cout << "0. Exit\n";
     std::cin >> loop_state;
     switch (loop_state) {
-    case 0:
+    case Tasks::ExitProgram:
       return 0;
-    case 1:
+    case Tasks::TaskOne:
       Task_1_average_numbers();
       break;
-    case 2:
+    case Tasks::TaskTwo:
       Task_2_lucky_ticket();
       break;
-    case 3:
+    case Tasks::TaskThree:
       Task_3_number_reverce();
       break;
-    case 4:
+    case Tasks::TaskFour:
       Task_4_odd_numbers();
       break;
-    case 5:
+    case Tasks::TaskFive:
       Task_5_best_divider();
       break;
-    case 6:
+    case Tasks::TaskSix:
       Task_6_christmas_tree();
       break;
-    case 7:
+    case Tasks::TaskSeven:
       Task_7_bit_count();
       break;
-    case 8:
+    case Tasks::TaskEight:
       Task_8_bit_set();
       break;
-    case 9:
+    case Tasks::TaskNine:
       Task_9_number_builder();
+      break;
+    default:
+      std::cout << "There's no such option\n";
       break;
     }
     std::cout << std::endl;
