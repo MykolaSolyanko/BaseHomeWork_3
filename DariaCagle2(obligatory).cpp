@@ -1,5 +1,4 @@
 #include <iostream>
-#include <stdlib.h>
 
 enum {
   kOne = 1,
@@ -15,6 +14,14 @@ enum {
   kThousand = 1000,
   kZero = 0
 };
+
+enum TASKS {
+  SUMANDMEAN = 1,
+  LUCKYTICKET,
+  REVERSENUMBERS,
+  SUMOFODD,
+  BESTDIVISOR
+}
 
 void sumAndMean() {
   std::cout << "Enter any multidigital number:\n";
@@ -175,19 +182,19 @@ int main() {
     int chosenProgram;
     std::cin >> chosenProgram;
     switch (chosenProgram) {
-    case kOne:
+    case SUMANDMEAN:
       sumAndMean();
       break;
-    case kTwo:
+    case LUCKYTICKET:
       luckyTicket();
       break;
-    case kThree:
+    case REVERSENUMBERS:
       reverseNumbers();
       break;
-    case kFour:
+    case SUMOFODD:
       sumOfOdd();
       break;
-    case kFive:
+    case BESTDIVISOR:
       bestDivisor();
       break;
     default:
