@@ -70,7 +70,7 @@ void reverseNumbers() {
   std::cin >> number;
   int digit;
   int64_t reverseNumber = kZero;
-  if (number == abs(number)) {
+  if (number == -number) {
     while (number != kZero) {
       digit = number % kTen;
       reverseNumber = reverseNumber * kTen + digit;
@@ -87,36 +87,6 @@ void reverseNumbers() {
     std::cout << -reverseNumber << "\n";
   }
 }
-
-/*void sumOfOdd() {
-  constexpr int kOne = 1;
-  constexpr int kFifty = 50;
-  int numberOfElements;
-  do {
-    std::cout << "Enter number of elements from " << kOne << " to " << kFifty
-              << ":\n";
-    std::cin >> numberOfElements;
-  } while ((numberOfElements < kOne) || (numberOfElements > kFifty));
-  int *elements = new int[numberOfElements];
-  std::cout << "Enter " << numberOfElements << " elements from " << -kSixty
-            << " to " << kNinety << ":\n";
-  size_t i = kZero;
-  while (i != numberOfElements) {
-    std::cin >> elements[i];
-    while ((elements[i] < -kSixty) || (elements[i] > kNinety)) {
-      std::cout << "Wrong range! Enter again:\n";
-      std::cin >> elements[i];
-    }
-    i++;
-  }
-  int sum = kZero;
-  for (int count = kZero; count < numberOfElements; ++count) {
-    if (elements[count] % kTwo == kOne) {
-      sum = sum + elements[count];
-    }
-  }
-  std::cout << sum << "\n";
-}*/
 
 void sumOfOdd() {
   int numberOfElements;
