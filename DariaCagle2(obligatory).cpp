@@ -1,38 +1,23 @@
 #include <iostream>
 
-enum {
-  kOne = 1,
-  kTwo,
-  kThree,
-  kFour,
-  kFive,
-  kSix,
-  kTen = 10,
-  kFifty = 50,
-  kSixty = 60,
-  kNinety = 90,
-  kThousand = 1000,
-  kZero = 0
-};
-
 enum TASKS {
   SUMANDMEAN = 1,
   LUCKYTICKET,
   REVERSENUMBERS,
   SUMOFODD,
   BESTDIVISOR
-}
+};
 
 void sumAndMean() {
   std::cout << "Enter any multidigital number:\n";
   int number;
-  int i = kZero;
-  int sum = kZero;
+  int i = 0;
+  int sum = 0;
   std::cin >> number;
-  while (number != kZero) {
-    int digit = number % kTen;
+  while (number != 0) {
+    int digit = number % 10;
     sum += digit;
-    number = (number - (number % kTen)) / kTen;
+    number = number / 10;
     ++i;
   }
   float mean = static_cast<float>(sum) / i;
@@ -40,22 +25,24 @@ void sumAndMean() {
 }
 
 void luckyTicket() {
+  constexpr int kSix = 6;
+  constexpr int kThousand = 1000;
   std::cout << "Enter a " << kSix << "-digit number:\n";
   int number;
   std::cin >> number;
-  int number1 = (number - (number % kThousand)) / kThousand;
+  int number1 = number / kThousand;
   int number2 = number % kThousand;
-  int sum1 = kZero;
-  while (number1 != kZero) {
-    int digit = number1 % kTen;
+  int sum1 = 0;
+  while (number1 != 0) {
+    int digit = number1 % 10;
     sum1 += digit;
-    number1 = (number1 - (number1 % kTen)) / kTen;
+    number1 = number1 / 10;
   }
-  int sum2 = kZero;
-  while (number2 != kZero) {
-    int digit = number2 % kTen;
+  int sum2 = 0;
+  while (number2 != 0) {
+    int digit = number2 % 10;
     sum2 += digit;
-    number2 = (number2 - (number2 % kTen)) / kTen;
+    number2 = number2 / 10;
   }
   if (sum1 == sum2)
     std::cout << "This is a lucky ticket!\n";
@@ -69,26 +56,27 @@ void reverseNumbers() {
   std::cout << "Enter any 32x signed number:\n";
   std::cin >> number;
   int digit;
-  int64_t reverseNumber = kZero;
-  if (number == -number) {
-    while (number != kZero) {
-      digit = number % kTen;
-      reverseNumber = reverseNumber * kTen + digit;
-      number = (number - (number % kTen)) / kTen;
-    }
-    std::cout << reverseNumber << "\n";
-  } else {
-    number = abs(number);
-    while (number != kZero) {
-      digit = number % kTen;
-      reverseNumber = reverseNumber * kTen + digit;
-      number = (number - (number % kTen)) / kTen;
-    }
-    std::cout << -reverseNumber << "\n";
+  bool isNegative = number < 0;
+  int64_t reverseNumber = 0;
+  if (isNegative) {
+    number = -number;
   }
+  while (number != 0) {
+    digit = number % 10;
+    reverseNumber = reverseNumber * 10 + digit;
+    number = number / 10;
+  }
+  if (isNegative) {
+    reverseNumber = -reverseNumber;
+  }
+  std::cout << reverseNumber << "\n";
 }
 
 void sumOfOdd() {
+  constexpr int kOne = 1;
+  constexpr int kFifty = 50;
+  constexpr int kSixty = 60;
+  constexpr int kNinety = 90;
   int numberOfElements;
   do {
     std::cout << "Enter number of elements from " << kOne << " to " << kFifty
@@ -98,14 +86,14 @@ void sumOfOdd() {
   std::cout << "Enter " << numberOfElements << " elements from " << -kSixty
             << " to " << kNinety << ":\n";
   int sum = 0;
-  for (size_t i = kOne; i <= numberOfElements; i++) {
+  for (size_t i = 1; i <= numberOfElements; i++) {
     int element;
     std::cin >> element;
     while ((element < -kSixty) || (element > kNinety)) {
       std::cout << "Wrong range! Enter again:\n";
       std::cin >> element;
     }
-    if (element % kTwo == kOne) {
+    if (element % 2 == 1) {
       sum += element;
     }
   }
@@ -113,11 +101,11 @@ void sumOfOdd() {
 }
 
 int sum(int number) {
-  int sum = kZero;
-  while (number != kZero) {
-    int digit = number % kTen;
+  int sum = 0;
+  while (number != 0) {
+    int digit = number % 10;
     sum += digit;
-    number = (number - (number % kTen)) / kTen;
+    number = number / 10;
   }
   return sum;
 }
@@ -126,12 +114,12 @@ void bestDivisor() {
   std::cout << "Enter a positive number:\n";
   int number;
   std::cin >> number;
-  int bestDivisor = kZero;
-  for (int divisor = kOne; divisor <= number; divisor++) {
-    if ((number % divisor) == kZero) {
+  int bestDivisor = 0;
+  for (int divisor = 1; divisor <= number; divisor++) {
+    if ((number % divisor) == 0) {
       auto sum_digit_devisor = sum(divisor);
       if (sum_digit_devisor > bestDivisor) {
-      bestDivisor = sum_digit_devisor;
+        bestDivisor = divisor;
       }
     }
   }
@@ -140,15 +128,15 @@ void bestDivisor() {
 
 int main() {
   std::cout << "Choose a program:\n";
-  std::cout << kOne << ". Sum and Mean\n";
-  std::cout << kTwo << ". Lucky Ticket\n";
-  std::cout << kThree << ". Reverse Numbers\n";
-  std::cout << kFour << ". Sum of Odd Elements\n";
-  std::cout << kFive << ". Best Divisor\n";
+  std::cout << SUMANDMEAN << ". Sum and Mean\n";
+  std::cout << LUCKYTICKET << ". Lucky Ticket\n";
+  std::cout << REVERSENUMBERS << ". Reverse Numbers\n";
+  std::cout << SUMOFODD << ". Sum of Odd Elements\n";
+  std::cout << BESTDIVISOR << ". Best Divisor\n";
   std::cout << "Press any other key to exit\n";
   while (true) {
-    std::cout << "Enter the desired number from " << kOne << " to " << kFive
-              << "\n";
+    std::cout << "Enter the desired number from " << SUMANDMEAN << " to "
+              << BESTDIVISOR << "\n";
     int chosenProgram;
     std::cin >> chosenProgram;
     switch (chosenProgram) {
