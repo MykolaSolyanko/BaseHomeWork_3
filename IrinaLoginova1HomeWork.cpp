@@ -3,8 +3,7 @@
 #include <stdexcept>
 
 int main() {
-  constexpr int MinRange = 2, MaxRange = 255;
-  {
+  constexpr int MinRange = 2, MaxRange = 255;  
     std::cout << "Please enter a value for variables A, B, C in the range from "
               << MinRange << " to " << MaxRange << std::endl;
     std::cout << "The value for A = ";
@@ -55,7 +54,6 @@ int main() {
     } else {
       long double x = -b / (Two * a);
       std::cout << "The root of the equation x= " << x << std::endl;
-    }
-  }
+    }  
   return 0;
 }
