@@ -53,12 +53,10 @@ void Task_2_lucky_ticket()
 		}
 		digitsNumber = static_cast<int>(log10(number)) + 1;
 		constexpr int kDigitsNumberCount = 6;
-		if (digitsNumber != kDigitsNumberCount) {
-			std::cout << "Number is not 6-digit! Please try again!\n";
-			continue;
-		}
-		else
+		if (digitsNumber == kDigitsNumberCount) {			
 			break;
+		}
+		std::cout << "Number is not 6-digit! Please try again!\n";
 	}
 
 	int left{ 0 };
@@ -89,11 +87,10 @@ void Task_3_number_reverce() {
 		std::cout << "Enter number: ";
 		std::cin >> number;
 		long long checker = number;
-		if (checker > std::numeric_limits<int>::max() || 
-			checker < std::numeric_limits<int>::min())
-			std::cout << "There is an int overflow try again\n";
-		else
+		if (checker < std::numeric_limits<int>::max() ||
+			checker > std::numeric_limits<int>::min())
 			break;
+		std::cout << "There is an int overflow try again\n";
 	}
 	
 	while (number) {
@@ -108,38 +105,39 @@ void Task_3_number_reverce() {
 void Task_4_odd_numbers() {
 	constexpr int kRangeSizeLow{ 1 };
 	constexpr int kRangeSizeHigh{ 50 };
-	constexpr int kRangeElementLow{ -60 };
-	constexpr int kRangeElementHigh{ 90 };
+
 
 	int elementsNumber{ 0 };
 	int element;
-	bool check{ true };
 
-	while (check) {
+	while (true) {
 		std::cout << "Enter number of elements [" << kRangeSizeLow << ".." << kRangeSizeHigh <<"]: ";
 		std::cin >> elementsNumber;
-		if (elementsNumber < kRangeSizeLow ||
-			elementsNumber > kRangeSizeHigh) {
-			std::cout << "Number is not in range! Please try again\n";
-			continue;
+		if (elementsNumber > kRangeSizeLow ||
+			elementsNumber < kRangeSizeHigh) {
+			break;
 		}
-		check = false;
+		std::cout << "Number is not in range! Please try again\n";
 	}
 	
 	int oddSum{ 0 };
-	std::cout << "Enter elements in range [" << kRangeElementLow << ".." << kRangeElementHigh << "]\n ";
+	
 	for (int i = 0; i < elementsNumber; ) {
+		constexpr int kRangeElementLow{ -60 };
+		constexpr int kRangeElementHigh{ 90 };
+		std::cout << "Enter elements in range [" << kRangeElementLow << ".." << kRangeElementHigh << "]\n ";
 		std::cin >> element;
-		if (element <= kRangeElementLow ||
-			element >= kRangeSizeHigh) {
+		if (element >= kRangeElementLow ||
+			element <= kRangeSizeHigh) {
+
+			if (element & 1){
+				oddSum += element;
+				i++;
+
+			}
+		}
+		else 
 			std::cout << "Element is not in range! Please try again\n";
-			continue;
-		}
-		else if (element & 1)
-		{
-			oddSum += element;
-			i++;
-		}
 			
 	}
 
@@ -259,19 +257,25 @@ void Task_9_number_builder() {
 
 
 int main() {
-
+	int a = 24;
+	int b = 0;
+	while (a) {
+		b = a % 10;
+		a /= 10;
+	}
+		 
 	int loop_state{};
 	enum Tasks {
 		ExitProgram=0,
-		TaskOne,
-		TaskTwo,
-		TaskThree,
-		TaskFour,
-		TaskFive,
-		TaskSix,
-		TaskSeven,
-		TaskEight,
-		TaskNine
+		AverageDigits,
+		LuckyTicket,
+		ReverseNumber,
+		SumOfOdd,
+		TheBestDivider,
+		ChristmasTree,
+		SetBits,
+		BitState,
+		NumberBuilding
 	};
 
 	while (true)
@@ -292,31 +296,31 @@ int main() {
 		{
 		case Tasks::ExitProgram:
 			return 0;
-		case Tasks::TaskOne:
+		case Tasks::AverageDigits:
 			Task_1_average_numbers();
 			break;
-		case Tasks::TaskTwo:
+		case Tasks::LuckyTicket:
 			Task_2_lucky_ticket();
 			break;
-		case Tasks::TaskThree:
+		case Tasks::ReverseNumber:
 			Task_3_number_reverce();
 			break;
-		case Tasks::TaskFour:
+		case Tasks::SumOfOdd:
 			Task_4_odd_numbers();
 			break;
-		case Tasks::TaskFive:
+		case Tasks::TheBestDivider:
 			Task_5_best_divider();
 			break;
-		case Tasks::TaskSix:
+		case Tasks::ChristmasTree:
 			Task_6_christmas_tree();
 			break;
-		case Tasks::TaskSeven:
+		case Tasks::SetBits:
 			Task_7_bit_count();
 			break;
-		case Tasks::TaskEight:
+		case Tasks::BitState:
 			Task_8_bit_set();
 			break;
-		case Tasks::TaskNine:
+		case Tasks::NumberBuilding:
 			Task_9_number_builder();
 			break;
 		default:
