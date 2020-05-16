@@ -17,29 +17,22 @@ void reverseString() {
 void insertInArray() {
   constexpr int length = 5;
   int arr[length]{};
-  int countZero = length;
-  while (countZero > 0) {
+  int countZero = 0;
+  while (countZero < length) {
     std::cout << "Input a number:\n";
     int number;
     std::cin >> number;
-    if (number == 0) {
-      continue;
-    }
-    int i = 0;
-    while (arr[i] != 0) {
-      if (number < arr[i]) {
-        break;
-      } else {
-        i++;
-      }
-    }
-    int newVal = length - 1;
-    while (newVal > i) {
-      arr[newVal] = arr[newVal - 1];
-      newVal--;
-    }
+    int i = countZero;
     arr[i] = number;
-    countZero--;
+    while (i > 0) {
+      if (arr[i] < arr[i - 1]) {
+        int temp = arr[i - 1];
+        arr[i - 1] = arr[i];
+        arr[i] = temp;
+      }
+      i--;
+    }
+    countZero++;
   }
   for (int i = 0; i < length; i++) {
     std::cout << arr[i] << " ";
