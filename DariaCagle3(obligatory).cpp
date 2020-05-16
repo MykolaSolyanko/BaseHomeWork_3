@@ -26,10 +26,14 @@ void insertInArray() {
       continue;
     }
     int i = 0;
-    while (number < arr[i]) {
-      i++;
+    while (arr[i] != 0) {
+      if (number < arr[i]) {
+        break;
+      } else {
+        i++;
+      }
     }
-    int newVal = length - 1; //sorting starts here
+    int newVal = length - 1;
     while (newVal > i) {
       arr[newVal] = arr[newVal - 1];
       newVal--;
