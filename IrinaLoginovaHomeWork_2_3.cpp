@@ -1,19 +1,28 @@
 #include <cmath>
-#include <cstdint>
 #include <iostream>
 #include <stdexcept>
 
 int main() {
-  std::cout << "Enter the number --> ";
-  int32_t number;
-  std::cin >> number;
-  if (number < 0)
-    std::cout << "-";
-  int x = abs(number) % 10;
-  while (x != 0) {
-    std::cout << x;
-    number = (abs(number) - x) / 10;
-    x = abs(number) % 10;
-  }
-  return 0;
+    std::cout << "Please enter a number and we will reverse it --> ";
+    int32_t number{};
+    std::cin >> number;
+    if (number < 0) {
+        std::cout << "Reverse = -";
+    }
+    else {
+        std::cout << "Reverse = ";
+    }
+    int x = abs(number) % 10;
+    number = abs(number);
+    int32_t ReverseNumber{};
+    ReverseNumber = x;
+    while (x > 0) {
+        number = (number - x) / 10;
+        x = number % 10;
+        if (x == 0) {
+            std::cout << ReverseNumber << std::endl;
+        }
+        ReverseNumber = (ReverseNumber * 10) + x;
+    }
+    return 0;
 }
