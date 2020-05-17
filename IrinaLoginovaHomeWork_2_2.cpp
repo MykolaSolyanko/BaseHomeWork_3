@@ -7,8 +7,8 @@ int main() {
     std::cout << "Please enter 6 numbers of your ticket through Enter. Numbers "
         "ranging from "
         << MinRange << " to " << MaxRange << std::endl;
-    int sum_1 = {};
-    int sum_2 = {};
+    int sum_1 {};
+    int sum_2 {};
     for (size_t i = 1; i < 4; ++i) {
         std::cout << "Number is --> " << std::endl;
         std::cin >> NumberTicket;
