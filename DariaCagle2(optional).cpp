@@ -32,7 +32,7 @@ void numberOfBits() {
   size_t i{};
   constexpr int kIntBit = sizeof(int) * 8;
   while (i < kIntBit) {
-    if (number & (1 << ++i)) {
+    if (number & (1 << i++)) {
       ++count;
     }
   }
@@ -43,10 +43,10 @@ void setBitCheck() {
   std::cout << "Enter a number:\n";
   int number;
   std::cin >> number;
-  std::cout << "Enter a check number:\n";
-  int checkNumber;
-  std::cin >> checkNumber;
-  bool bitSet = number & (1 << checkNumber);
+  std::cout << "Enter a number of a bit to be checked:\n";
+  int bitNumber;
+  std::cin >> bitNumber;
+  bool bitSet = number & (1 << bitNumber);
   if (bitSet) {
     std::cout << "Yes\n";
   } else {
