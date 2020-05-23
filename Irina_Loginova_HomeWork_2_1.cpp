@@ -3,16 +3,14 @@
 
 int main() {
 
-  std::cout << "Inpot A= " << std::endl;
+  std::cout << "Inpot A= ";
   int a{};
   std::cin >> a;
-  double x = a % 10;
   double sum{0};
   int i{0};
-  while (x != 0) {
-    std::cout << "x= " << x << std::endl;
+  while (double x = a % 10) {
     sum += x;
-    ++i;
+    i = i++;
     a = (a - x) / 10;
     x = a % 10;
   }
