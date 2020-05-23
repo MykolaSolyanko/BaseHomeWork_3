@@ -86,12 +86,7 @@ int main() {
             number2 = (number2 * 10) + a;
         }
 
-        if (number > 0) {
-            std::cout << number2 << std::endl;
-        }
-        else {
-            std::cout << number2 << std::endl;
-        }
+        std::cout << number2 << std::endl;
     }
     else if (setNumber == SumOfOddElements) {
         constexpr int kMin{ 1 };
