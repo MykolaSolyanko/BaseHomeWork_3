@@ -12,7 +12,7 @@ int main() {
 
     int setNumber{};
 
-    while (setNumber < 1 || setNumber > 5) {
+    while (setNumber < CalculateTheSumAndArithmeticMeanOfDigitsInTheNumber || setNumber > BestDivisor) {
         std::cout
             << CalculateTheSumAndArithmeticMeanOfDigitsInTheNumber
             << " Calculate the sum and arithmetic mean of digits in the number"
