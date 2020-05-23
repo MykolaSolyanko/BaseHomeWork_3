@@ -1,15 +1,18 @@
 #include <iostream>
 
+enum { Revers = 1, InsertFnElementIntoAnArray };
+
 int main() {
   std::cout << "What task do you want to solve ?" << std::endl;
 
-  int setNumber(0);
+  int setNumber{};
 
-  while (setNumber < 1 || setNumber > 2) {
-    std::cout << "1: Revers " << std::endl;
-    std::cout << "2: Insert an element into an array " << std::endl;
+  while (setNumber < Revers || setNumber > InsertFnElementIntoAnArray) {
+    std::cout << Revers << " Revers " << std::endl;
+    std::cout << InsertFnElementIntoAnArray
+              << " Insert an element into an array " << std::endl;
     std::cin >> setNumber;
-    if (setNumber == 1) {
+    if (setNumber == Revers) {
       std::cout << "Enter a line to reverse" << std::endl;
       std::string s;
       std::cin >> s;
@@ -17,13 +20,13 @@ int main() {
         std::cout << s[i];
       }
       std::cout << "" << std::endl;
-    } else if (setNumber == 2) {
+    } else if (setNumber == InsertFnElementIntoAnArray) {
       constexpr int arrayLength{5};
       int array[arrayLength] = {};
-      int number(0);
+      int number{};
       std::cout << "Enter 5 numbers to arrange them in order" << std::endl;
 
-      for (int key(0); key < arrayLength; key++) {
+      for (int key{}; key < arrayLength; key++) {
         std::cin >> number;
         array[key] = number;
         int i = key;
