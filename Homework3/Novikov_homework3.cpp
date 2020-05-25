@@ -37,10 +37,9 @@ void TaskOneReverse() {
     return;
   }
 
-  const int cycleDuration = strlen(string) / 2;
   int endOfString = strlen(string) - 1;
 
-  for (size_t i = 0; i < cycleDuration; i++, endOfString--) {
+  for (size_t i = 0; i < endOfString; i++, endOfString--) {
     char buf = string[i];
     string[i] = string[endOfString];
     string[endOfString] = buf;
@@ -72,20 +71,16 @@ void TaskTwoInsertion() {
   std::cout << "]\n";
 }
 
-void deleteElement(int *array, int number, int &arraySize) {
-  for (size_t i = number; i < arraySize; i++)
-    array[i] = array[i + 1];
-  arraySize--;
-}
-
-void findElement(int *array, int &arraySize) {
+void DeleteElement(int *array, int &arraySize) {
   int finder{};
   std::cout << "Enter element to find \n";
   std::cin >> finder;
   if (arraySize > 0) {
     for (size_t i = 0; i < arraySize; i++) {
       if (array[i] == finder) {
-        deleteElement(array, i, arraySize);
+        for (size_t n = i; n < arraySize; n++)
+          array[n] = array[n + 1];
+        arraySize--;
         i--;
       }
     }
@@ -96,7 +91,7 @@ void findElement(int *array, int &arraySize) {
 void TaskThreeDeleteElement() {
   constexpr int maxArraySize = 10;
   int ArraySize = maxArraySize;
-  int MyArray[maxArraySize];
+  int MyArray[maxArraySize]{};
   int maxRange{};
   int minRange{};
   std::cout << "Enter element max range\n";
@@ -120,6 +115,8 @@ void TaskThreeDeleteElement() {
   int choise{};
   bool menu = true;
   while (menu) {
+    if (ArraySize == 0)
+      break;
     std::cout << "Choose what to do: \n";
     std::cout << "1. Delete element \n";
     std::cout << "0. Exit \n";
@@ -129,7 +126,7 @@ void TaskThreeDeleteElement() {
       menu = false;
       break;
     case deleteElement:
-      findElement(MyArray, ArraySize);
+      DeleteElement(MyArray, ArraySize);
       break;
     }
   }
@@ -180,7 +177,7 @@ void TaskFiveisDigit() {
   }
 
   std::cout << "Digits in string [ ";
-  for (size_t i = 0; string[i] != 0; i++) {
+  for (size_t i = 0; string[i] != '\0'; i++) {
     if (string[i] >= '0' && string[i] <= '9')
       std::cout << string[i] << " ";
   }
