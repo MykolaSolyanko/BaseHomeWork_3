@@ -13,8 +13,8 @@ void deleteItem() {
   constexpr int max{20};
   std::mt19937 gen(time(0));
   std::uniform_int_distribution<> num(min, max);
-  for (int i{0}; i < length; i++) {
-    array[i] = num(gen);
+  for (auto& value : array) {
+    value = num(gen);
   }
   int count = length;
   do {
@@ -35,13 +35,10 @@ void deleteItem() {
 void toUpper() {
   std::cout << "Enter a sentence:\n";
   char sentence[255]{};
-  std::cin >> sentence;
-  int length{0};
-  for (length; sentence[length] != '\0'; length++)
-    ;
-  for (int i = 0; i < length; i++) {
-    int code = static_cast<int>(sentence[i]);
-    if ((code > 96) && (code < 123)) {
+  std::cin.get(sentence, 255);
+  for (size_t i{}; sentence[i] != '\0'; ++i) {
+    char code = sentence[i];
+    if (code >= 'a' && code <= 'z') {
       std::cout << char(code - kCodeDif);
     } else {
       std::cout << sentence[i];
@@ -51,40 +48,28 @@ void toUpper() {
 }
 
 bool isDigit(char letter) {
-  int code = static_cast<int>(letter);
-  if ((code > 47) && (code < 58)) {
-    return true;
-  } else {
-    return false;
-  }
+  return char >= '0' && char <= '9';
 }
 
 void findDigit() {
   std::cout << "Enter a sentence:\n";
   char sentence[255]{};
   std::cin >> sentence;
-  int length{0};
-  for (length; sentence[length] != '\0'; length++)
-    ;
-  for (int i = 0; i < length; i++) {
-    bool digit = isDigit(sentence[i]);
-    if (digit == true) {
-      std::cout << sentence[i] << " ";
-    }
+  for (char item : sentence) {
+  if (isDigit(item)) {
+    std::cout <<item << " ";
   }
+}
   std::cout << '\n';
 }
 
 void toLower() {
   std::cout << "Enter a sentence:\n";
   char sentence[255]{};
-  std::cin >> sentence;
-  int length{0};
-  for (length; sentence[length] != '\0'; length++)
-    ;
-  for (int i = 0; i < length; i++) {
-    int code = static_cast<int>(sentence[i]);
-    if ((code > 64) && (code < 91)) {
+  std::cin.get(sentence, 255);
+  for (size_t i{}; sentence[i] != '\0'; ++i) {
+    char code = sentence[i];
+    if (code >= 'A' && code <= 'Z') {
       std::cout << char(code + kCodeDif);
     } else {
       std::cout << sentence[i];
