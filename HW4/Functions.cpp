@@ -1,4 +1,3 @@
-#include "Constants.h"
 #include "Functions.h"
 #include <iomanip>
 bool PredLess(int first, int second) { return first < second; }
