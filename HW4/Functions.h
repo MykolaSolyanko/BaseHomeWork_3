@@ -1,9 +1,9 @@
 #pragma once
+#include "Constants.h"
 #include <chrono>
 #include <functional>
 #include <iostream>
 #include <random>
-#include "Constants.h"
 
 bool PredLess(int first, int second);
 bool PredGreater(int first, int second);
@@ -14,10 +14,10 @@ bool PredGreater(double first, double second);
 bool PredLess(char first, char second);
 bool PredGreater(char first, char second);
 
-using Pred = std::function<bool(int, int)>;
-using PredUI = std::function<bool(unsigned int, unsigned int)>;
-using PredD = std::function<bool(double, double)>;
-using PredC = std::function<bool(char, char)>;
+using Pred = bool (*)(int, int);
+using PredUI = bool (*)(unsigned int, unsigned int);
+using PredD = bool (*)(double, double);
+using PredC = bool (*)(char, char);
 
 void output_array_range(unsigned int *begin, unsigned int *end);
 void output_array_range(double *begin, double *end);
@@ -39,8 +39,8 @@ void qSort(unsigned int *begin, int size, PredUI pred);
 void qSort(double *begin, int size, PredD pred);
 void qSort(char *begin, int size, PredC pred);
 
-void encrypt(char encryptMatrix[][kMatrixSize], char *string, int key);
-void decrypt(char encryptMatrix[][kMatrixSize], char *string, int key);
+void encrypt(char encryptMatrix[][10], char *string, int key);
+void decrypt(char encryptMatrix[][10], char *string, int key);
 
 void TaskOneSortComparsion();
 
