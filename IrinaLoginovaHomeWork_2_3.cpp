@@ -12,8 +12,8 @@ int main() {
     else {
         std::cout << "Reverse = ";
     }
-    int x = abs(number) % 10;
     number = abs(number);
+    int x = number % 10;  
     int32_t ReverseNumber{};
     ReverseNumber = x;
     while (x > 0) {
