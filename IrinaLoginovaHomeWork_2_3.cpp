@@ -19,10 +19,10 @@ int main() {
     while (x > 0) {
         number = (number - x) / 10;
         x = number % 10;
-        if (x == 0) {
-            std::cout << ReverseNumber << std::endl;
-        }
+        if (x == 0)
+            break;
         ReverseNumber = (ReverseNumber * 10) + x;
     }
+    std::cout << ReverseNumber << std::endl;
     return 0;
 }
