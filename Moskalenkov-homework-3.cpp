@@ -27,8 +27,7 @@ int main() {
       std::cout << "Enter 5 numbers to arrange them in order" << std::endl;
 
       for (int key{}; key < arrayLength; key++) {
-        std::cin >> number;
-        array[key] = number;
+        std::cin >> array[key];
         int i = key;
         while (i > 0) {
           if (array[i] < array[i - 1]) {
