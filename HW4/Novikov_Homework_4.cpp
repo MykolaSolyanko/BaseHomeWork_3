@@ -1,4 +1,5 @@
 #include "Functions.h"
+#include <iostream>
 
 int main() {
   enum Tasks {

@@ -1,11 +1,12 @@
 #pragma once
-#ifndef CONSTANT_H
-#define CONSTANT_H
-constexpr int kArraySize{50000};
+
+// Global constants
+constexpr int kArraySize{30};
+constexpr int kOutput{30};
+constexpr int kMatrixSize{100};
+
+// Global variables
 inline int ArrayToSort[kArraySize]{};
 inline unsigned int ArrayToSortUI[kArraySize]{};
 inline double ArrayToSortD[kArraySize]{};
 inline char ArrayToSortC[kArraySize]{};
-constexpr int kOutput{200};
-constexpr int kMatrixSize{100};
-#endif // !CONSTANT_H
