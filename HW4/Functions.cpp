@@ -172,14 +172,14 @@ void TaskTwoSortChar() {
   output_array_range(ArrayBegin, ArrayBegin + kOutput);
 }
 
-static bool checkString(char *string, int maxSize) {
-  if (string != nullptr) {
+static bool checkString(char *str, int maxSize) {
+  if (str != nullptr) {
     while (true) {
-      if (!std::cin.getline(string, maxSize)) {
+      if (!std::cin.getline(str, maxSize)) {
         std::cout << "Error in string range, try again\n";
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-      } else if (*string != 0)
+      } else if (*str != 0)
         return true;
       std::cout << "Empty string try again\n";
     }
@@ -193,12 +193,12 @@ void EncryptionTask() {
   enum menu { Exit = 0, KeyEnter, Encrypt, Decrypt, Output };
 
   constexpr int kMaxStringSize{255};
-  char string[kMaxStringSize]{};
+  char str[kMaxStringSize]{};
   bool enc{};
   char cryptomatrix[kMatrixSize][kMatrixSize]{};
   std::cout << "Enter message\n";
 
-  if (!checkString(string, kMaxStringSize)) {
+  if (!checkString(str, kMaxStringSize)) {
     std::cout << "Error in string input\n";
     return;
   }
@@ -219,19 +219,19 @@ void EncryptionTask() {
       std::cin >> key;
       break;
     case Encrypt:
-      encrypt(cryptomatrix, string, key);
+      encrypt(cryptomatrix, str, key);
       enc = true;
       break;
     case Decrypt:
       if (enc == true) {
-        decrypt(cryptomatrix, string, key);
+        decrypt(cryptomatrix, str, key);
         enc = false;
         break;
       }
       std::cout << "Message is not encrypted\n";
       break;
     case Output:
-      std::cout << string << std::endl;
+      std::cout << str << std::endl;
     default:
       break;
     }

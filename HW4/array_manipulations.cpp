@@ -44,7 +44,7 @@ void fill_array(int *begin, int *end) {
   std::uniform_int_distribution<> rand_distribution(kMinRandomRange,
                                                     kMaxRandomRange);
 
-  for (int *it{begin}; it != end; ++it) {
+  for (auto it{begin}; it != end; ++it) {
     *it = rand_distribution(rnd);
   }
 }

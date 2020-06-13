@@ -1,7 +1,7 @@
 #include "Functions.h"
 #include "sort.h"
 
-auto swap = [](auto &elOne, auto &elTwo) {
+static auto swap = [](auto &elOne, auto &elTwo) {
   auto buf{elOne};
   elOne = elTwo;
   elTwo = buf;
