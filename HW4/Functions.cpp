@@ -172,7 +172,7 @@ void TaskTwoSortChar() {
   output_array_range(ArrayBegin, ArrayBegin + kOutput);
 }
 
-bool checkString(char *string, int maxSize) {
+static bool checkString(char *string, int maxSize) {
   if (string != nullptr) {
     while (true) {
       if (!std::cin.getline(string, maxSize)) {
