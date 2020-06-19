@@ -7,32 +7,29 @@ void reverseString() {
   char arr[255]{};
   std::cin >> arr;
   int length = strlen(arr);
-  char revArr[255]{};
-  for (int ch = 0; ch < length; ch++) {
-    revArr[ch] = arr[length - ch - 1];
+  for (int ch = 0; ch < length/2; ch++) {
+    tmp = arr[length - ch - 1];
+    arr[length - ch - 1] = arr[ch];
+    arr[ch] = tmp;
   }
-  std::cout << revArr << "\n";
+  std::cout << arr << "\n";
 }
 
 void insertInArray() {
   constexpr int length = 5;
   int arr[length]{};
-  int countZero = 0;
-  while (countZero < length) {
+  for (int countZero {0}; countZero < length, countZero++) {
     std::cout << "Input a number:\n";
     int number;
     std::cin >> number;
-    int i = countZero;
     arr[i] = number;
-    while (i > 0) {
+    for (int i = countZero; i > 0; i--;) {
       if (arr[i] < arr[i - 1]) {
         int temp = arr[i - 1];
         arr[i - 1] = arr[i];
         arr[i] = temp;
       }
-      i--;
     }
-    countZero++;
   }
   for (int i = 0; i < length; i++) {
     std::cout << arr[i] << " ";
