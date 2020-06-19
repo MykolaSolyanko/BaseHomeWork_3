@@ -8,7 +8,7 @@ void reverseString() {
   std::cin >> arr;
   int length = strlen(arr);
   for (int ch = 0; ch < length/2; ch++) {
-    tmp = arr[length - ch - 1];
+    int tmp = arr[length - ch - 1];
     arr[length - ch - 1] = arr[ch];
     arr[ch] = tmp;
   }
